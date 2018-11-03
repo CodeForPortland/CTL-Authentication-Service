@@ -45,13 +45,14 @@ func RegisterService() {
 	}
 
 	// Connect serviceClient client with requested socket type and serialization.
-	serviceClient, err := NewClient(logger, clientAddrs, clientCfg)
+	serviceClient, err := NewClient(clientAddrs, clientCfg, "ws")
 	if err != nil {
 		logger.Fatal(err)
 	}
 	defer serviceClient.Close()
 
 	serviceClient.Register(procedureName, authentication.AuthenticateHandler, nil)
+
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt)
 	select {

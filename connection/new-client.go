@@ -15,6 +15,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 
 	"github.com/gammazero/nexus/client"
 )
@@ -27,9 +28,12 @@ type Addresses struct {
 	UnixAddr string
 }
 
-func NewClient(logger *log.Logger, addrs Addresses, cfg client.Config) (*client.Client, error) {
+func NewClient(addrs Addresses, cfg client.Config, scheme string) (*client.Client, error) {
+
+	logger := log.New(os.Stdout, "NewClient> ", log.LstdFlags)
+
 	var skipVerify, compress bool
-	var scheme, serType, caFile, certFile, keyFile string
+	var  serType, caFile, certFile, keyFile string
 	flag.StringVar(&scheme, "scheme", "ws",
 		"-scheme=[ws, wss, tcp, tcps, unix].  Default is ws (websocket no tls)")
 	flag.StringVar(&serType, "serialize", "json",
@@ -128,6 +132,9 @@ func NewClient(logger *log.Logger, addrs Addresses, cfg client.Config) (*client.
 	default:
 		return nil, errors.New("scheme must be one of: http, https, ws, wss, tcp, tcps, unix")
 	}
+
+	addr = fmt.Sprintf("ws://%s/", addrs.WsAddr) // added SSL
+
 	cli, err = client.ConnectNet(addr, cfg)
 	if err != nil {
 		return nil, err
