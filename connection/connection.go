@@ -1,7 +1,7 @@
 package connection
 
 import (
-	"ctl-auth/authentication"
+	"github.com/CodeForPortland/ctl-authentication-service/authentication"
 	"ctl-auth/reporter"
 	"github.com/gammazero/nexus/client"
 	"log"
