@@ -1,6 +1,6 @@
 package main
 
-import "ctl-auth/connection"
+import "github.com/CodeForPortland/ctl-authentication-service/connection"
 
 func main() {
 	connection.RegisterService()
