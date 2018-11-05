@@ -1,12 +1,14 @@
 package connection
 
 import (
-	"github.com/CodeForPortland/ctl-authentication-service/authentication"
-	"ctl-auth/reporter"
-	"github.com/gammazero/nexus/client"
 	"log"
 	"os"
 	"os/signal"
+
+	"github.com/CodeForPortland/ctl-authentication-service/authentication"
+	"github.com/CodeForPortland/ctl-authentication-service/reporter"
+
+	"github.com/gammazero/nexus/client"
 )
 
 type Options struct {

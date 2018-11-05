@@ -3,11 +3,13 @@ package authentication
 import (
 	"context"
 	"crypto/rand"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/gammazero/nexus/client"
-	"github.com/gammazero/nexus/wamp"
 	"log"
 	"os"
+
+	"github.com/dgrijalva/jwt-go"
+
+	"github.com/gammazero/nexus/client"
+	"github.com/gammazero/nexus/wamp"
 )
 
 type Credentials struct {
